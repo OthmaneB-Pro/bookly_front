@@ -5,18 +5,7 @@ import type { SubmitHandler } from "react-hook-form";
 import { loginSchema, registerSchema } from "./zodSchema";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-type LoginType = {
-  email: string;
-  password: string;
-};
-
-type RegisterType = {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+import type { LoginType, RegisterType } from "../../../types/user";
 
 export default function LoginPage() {
   const [isRegister, setIsRegister] = useState(false);
