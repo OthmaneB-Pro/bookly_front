@@ -6,6 +6,7 @@ import { loginSchema, registerSchema } from "./zodSchema";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import type { LoginType, RegisterType } from "../../../types/user";
+import FormInput from "../../reusable-ui/FormInput";
 
 export default function LoginPage() {
   const [isRegister, setIsRegister] = useState(false);
@@ -41,59 +42,50 @@ export default function LoginPage() {
         <Title>{isRegister ? "S'inscrire" : "Se connecter"}</Title>
 
         {isRegister && (
-          <>
-            <Input
-              type="text"
-              placeholder="Prénom"
-              {...registerForm.register("username")}
-            />
-            <Error>{registerForm.formState.errors.username?.message}</Error>
-          </>
+          <FormInput
+            placeholder="Prénom"
+            registration={registerForm.register("username")}
+            error={registerForm.formState.errors.username}
+          />
         )}
 
-        <Input
+        <FormInput
           type="email"
           placeholder="Email"
-          {...(isRegister
-            ? registerForm.register("email")
-            : loginForm.register("email"))}
-        />
-        <Error>
-          {
-            (isRegister
+          registration={
+            isRegister
+              ? registerForm.register("email")
+              : loginForm.register("email")
+          }
+          error={
+            isRegister
               ? registerForm.formState.errors.email
               : loginForm.formState.errors.email
-            )?.message
           }
-        </Error>
+        />
 
-        <Input
+        <FormInput
           type="password"
           placeholder="Mot de passe"
-          {...(isRegister
-            ? registerForm.register("password")
-            : loginForm.register("password"))}
-        />
-        <Error>
-          {
-            (isRegister
+          registration={
+            isRegister
+              ? registerForm.register("password")
+              : loginForm.register("password")
+          }
+          error={
+            isRegister
               ? registerForm.formState.errors.password
               : loginForm.formState.errors.password
-            )?.message
           }
-        </Error>
+        />
 
         {isRegister && (
-          <>
-            <Input
-              type="password"
-              placeholder="Confirmer votre mot de passe"
-              {...registerForm.register("confirmPassword")}
-            />
-            <Error>
-              {registerForm.formState.errors.confirmPassword?.message}
-            </Error>
-          </>
+          <FormInput
+            type="password"
+            placeholder="Confirmer votre mot de passe"
+            registration={registerForm.register("confirmPassword")}
+            error={registerForm.formState.errors.confirmPassword}
+          />
         )}
 
         <Button
@@ -105,7 +97,6 @@ export default function LoginPage() {
         >
           Valider
         </Button>
-
         <Switch>
           {isRegister ? "Déjà un compte ?" : "Pas encore de compte ?"}
           <span onClick={() => setIsRegister(!isRegister)}>
@@ -142,24 +133,6 @@ const Title = styled.h1`
   margin-bottom: 8px;
 `;
 
-const Input = styled.input`
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  outline: none;
-  transition: border 0.2s ease;
-
-  &:focus {
-    border-color: #c5a880;
-  }
-`;
-
-const Error = styled.p`
-  font-size: 0.85rem;
-  color: #c0392b;
-  margin: -8px 0 0 0;
-`;
 
 const Button = styled.button`
   padding: 12px;
