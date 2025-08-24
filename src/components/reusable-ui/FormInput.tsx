@@ -6,6 +6,7 @@ type Props = {
   placeholder?: string;
   registration: UseFormRegisterReturn;
   error?: FieldError;
+  show?: boolean;
 };
 
 export default function FormInput({
@@ -13,7 +14,9 @@ export default function FormInput({
   placeholder,
   registration,
   error,
+  show = true,
 }: Props) {
+  if (!show) return null;
   return (
     <FormInputStyled>
       <input type={type} placeholder={placeholder} {...registration} />
