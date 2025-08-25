@@ -6,21 +6,13 @@ type Props = {
   placeholder?: string;
   registration: UseFormRegisterReturn;
   error?: FieldError;
-  show?: boolean;
 };
 
-export default function FormInput({
-  type = "text",
-  placeholder,
-  registration,
-  error,
-  show = true,
-}: Props) {
-  if (!show) return null;
+export default function FormInput({ type = "text", placeholder, registration, error }: Props) {
   return (
     <FormInputStyled>
       <input type={type} placeholder={placeholder} {...registration} />
-      {error && <p>{error.message}</p>}
+      {error?.message && <p>{error.message}</p>}
     </FormInputStyled>
   );
 }
@@ -42,6 +34,7 @@ const FormInputStyled = styled.div`
       border-color: #c5a880;
     }
   }
+
   p {
     font-size: 0.85rem;
     color: #c0392b;
