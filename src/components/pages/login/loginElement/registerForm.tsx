@@ -7,6 +7,7 @@ import Button from "../../../reusable-ui/Button";
 import { registerSchema } from "./zodSchema";
 import type { RegisterType } from "../../../../types/user";
 import { inputConfigs } from "./inputValues";
+import { registerUser } from "../../../../api/auth";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -15,9 +16,15 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit: SubmitHandler<RegisterType> = (data) => {
+  const onSubmit: SubmitHandler<RegisterType> = async (data) => {
     console.log("Register:", data);
-    navigate(`/home/${data.username}`);
+    try {
+      await registerUser(data);
+      navigate(`/home`);
+    } catch (err) {
+      console.log("Inscription interompue ", err);
+      alert("Inscription impossible, email déjà utilisé !");
+    }
   };
 
   return (

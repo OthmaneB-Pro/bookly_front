@@ -7,6 +7,7 @@ import Button from "../../../reusable-ui/Button";
 import { loginSchema } from "./zodSchema";
 import type { LoginType } from "../../../../types/user";
 import { inputConfigs } from "./inputValues";
+import { loginUser } from "../../../../api/auth";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -15,9 +16,15 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginType> = (data) => {
-    console.log("Login:", data);
-    navigate(`/home/${data.email}`);
+  const onSubmit: SubmitHandler<LoginType> = async (data) => {
+    console.log("Login :", data);
+    try {
+      await loginUser(data);
+      navigate(`/home`);
+    } catch (err) {
+      console.log("Connexion interompue ", err);
+      alert("Mauvais identifiant !");
+    }
   };
 
   return (
