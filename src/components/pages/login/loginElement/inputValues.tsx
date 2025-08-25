@@ -1,4 +1,4 @@
-import type { LoginType, RegisterType } from "../../../types/user";
+import type { LoginType, RegisterType } from "../../../../types/user";
 
 type InputName = keyof LoginType | keyof RegisterType;
 

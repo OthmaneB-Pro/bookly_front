@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   loginSchema,
   registerSchema,
-} from "../components/pages/login/zodSchema";
+} from "../components/pages/login/loginElement/zodSchema";
 import type { LoginType, RegisterType } from "../types/user";
 
 type Mode = "login" | "register";

@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
-import FormInput from "../../reusable-ui/FormInput";
-import Button from "../../reusable-ui/Button";
+import FormInput from "../../../reusable-ui/FormInput";
+import Button from "../../../reusable-ui/Button";
 import { registerSchema } from "./zodSchema";
-import type { RegisterType } from "../../../types/user";
+import type { RegisterType } from "../../../../types/user";
 import { inputConfigs } from "./inputValues";
 
 export default function RegisterForm() {
