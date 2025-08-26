@@ -42,3 +42,5 @@ describe("Test LoginPage", () => {
     expect(setIsRegister).toHaveBeenCalledWith(true);
   });
 });
+
+
