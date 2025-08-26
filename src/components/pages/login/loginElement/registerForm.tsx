@@ -17,12 +17,11 @@ export default function RegisterForm() {
   });
 
   const onSubmit: SubmitHandler<RegisterType> = async (data) => {
-    console.log("Register:", data);
     try {
       await registerUser(data);
       navigate(`/home`);
     } catch (err) {
-      console.log("Inscription interompue ", err);
+      console.log("Inscription impossible ", err);
       alert("Inscription impossible, email déjà utilisé !");
     }
   };

@@ -17,12 +17,11 @@ export default function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<LoginType> = async (data) => {
-    console.log("Login :", data);
     try {
       await loginUser(data);
       navigate(`/home`);
     } catch (err) {
-      console.log("Connexion interompue ", err);
+      console.log("Connexion impossible ", err);
       alert("Mauvais identifiant !");
     }
   };
