@@ -13,6 +13,15 @@ export default function ResourcePage() {
 
   return (
     <PageWrapper>
+      <Navbar>
+        <Logo>Bookly</Logo>
+        <NavLinks>
+          <a href="/home">Accueil</a>
+          <a href="/reservation">Réservation</a>
+          <a href="/">Déconnexion</a>
+        </NavLinks>
+      </Navbar>
+
       <div className="card">
         {resource && resource.length > 0 ? (
           resource.map((res) => (
@@ -41,14 +50,51 @@ export default function ResourcePage() {
   );
 }
 
-
 const PageWrapper = styled.div`
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  padding: 20px 0;
   .card {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 20px;
+  }
+`;
+
+const Navbar = styled.nav`
+  width: 600px;
+  max-width: 900px;
+  margin: 20px auto;
+  background: #6c63ff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  border-radius: 30px;
+`;
+
+const Logo = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+`;
+
+const NavLinks = styled.div`
+  display: flex;
+  gap: 24px;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -65,9 +111,9 @@ const CardStyled = styled.div`
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  transform: scale(1.02);
+}
 `;
 
 const Image = styled.img`
