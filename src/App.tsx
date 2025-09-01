@@ -9,7 +9,7 @@ export default function App() {
       <Routes>
         <Route path={"/"} element={<LoginPage />} />
         <Route path={"*"} element={<ErrorPage />} />
-        <Route path={"/resource"} element={<ResourcePage />} />
+        <Route path={"/home"} element={<ResourcePage />} />
       </Routes>
     </BrowserRouter>
   );
