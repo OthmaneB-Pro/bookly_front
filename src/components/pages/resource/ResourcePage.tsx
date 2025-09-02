@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Navbar from "../../layout/navbar/Navbar";
-import CardResource from "./CardResource";
+import CardResource from "./card/CardResource";
 
 export default function ResourcePage() {
   return (
