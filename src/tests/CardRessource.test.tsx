@@ -4,8 +4,10 @@ import CardResource from "../components/pages/resource/card/CardResource";
 import { mockResources } from "./mockResource";
 
 vi.mock("../api/resource", () => ({
-  findAllResource: jest.fn((setResource) => {
-    setResource(mockResources);
+  findAllResource: vi.fn((setResource) => {
+    setTimeout(() => {
+      setResource(mockResources);
+    }, 500);
   }),
 }));
 
@@ -15,7 +17,8 @@ describe("New test for CardResource", () => {
     const EmptyTextElement = screen.getByText("Aucune ressource actuellement");
     expect(EmptyTextElement).toBeInTheDocument();
   });
-  test.only("affiche les ressources après l'appel API ", async () => {
+
+  test("affiche les ressources après l'appel API ", async () => {
     render(<CardResource />);
 
     await waitFor(() => {
