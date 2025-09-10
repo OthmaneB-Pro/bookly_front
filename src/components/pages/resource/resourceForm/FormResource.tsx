@@ -30,7 +30,7 @@ export default function FormResource() {
             type="text"
             placeholder="titre"
             error={form.formState.errors.title}
-            registration={form.register.title}
+            registration={form.register("title")}
           />
           <Button label="Valider" disabled={form.formState.isSubmitting} />
         </form>
