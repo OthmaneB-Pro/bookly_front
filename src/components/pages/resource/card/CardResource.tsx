@@ -7,13 +7,21 @@ import EmptyResource from "./EmptyResource";
 
 export default function CardResource() {
   const [resource, setResource] = useState<ResourceType[]>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    findAllResource(setResource);
+    try {
+      findAllResource(setResource);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
     <CardResourceStyled>
+      {isLoading && "Chargement en cours..."}
       {resource && resource.length > 0 ? (
         resource.map((res) => (
           <Card
