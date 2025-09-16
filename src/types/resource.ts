@@ -1,5 +1,5 @@
 export type ResourceType = {
-    id : string;
+    id? : string;
     type : "EVENT" | "ROOM" | "OPENSPACE" | "OFFICE";
     title : string;
     description : string;

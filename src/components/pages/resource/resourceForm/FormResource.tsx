@@ -24,7 +24,7 @@ export default function FormResource() {
         <button type="button" onClick={() => setIsForm(true)}>
           <IoAddCircleOutline />
         </button>
-      </div>
+      </div> 
 
       {isForm && (
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -53,6 +53,12 @@ export default function FormResource() {
             placeholder="Description"
             error={form.formState.errors.description}
             registration={form.register("description")}
+          />
+
+          <FormInput
+            type="date"
+            error={form.formState.errors.date}
+            registration={form.register("date")}
           />
 
           <FormInput
