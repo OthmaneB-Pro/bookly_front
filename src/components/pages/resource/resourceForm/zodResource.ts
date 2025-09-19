@@ -7,5 +7,5 @@ export const zodResource = z.object({
   type: z.enum(["EVENT", "ROOM", "OPENSPACE", "OFFICE"]),
   capacity: z.number().min(1, "Capacité minimale = 1"),
   availability: z.boolean(),
-  date: z.string().min(1, "La date est requise").optional(),
+  date: z.string().min(1, "La date est requise"),
 });
