@@ -4,18 +4,24 @@ import CardResource from "./card/CardResource";
 import FormResource from "./resourceForm/FormResource";
 import { useState } from "react";
 import type { ResourceType } from "../../../types/resource";
+import { ResourceContext } from "../../../context/ResourceContext";
 
 export default function ResourcePage() {
-    const [resource, setResource] = useState<ResourceType[]>();
-  
+  const [resource, setResource] = useState<ResourceType[]>([]);
+
+  const value = {
+    resource,
+    setResource,
+  };
+
   return (
-    <resourceContext>
-    <PageWrapper>
-      <Navbar />
-      <FormResource />
-      <CardResource />
-    </PageWrapper>
-    </resourceContext>
+    <ResourceContext.Provider value={value}>
+      <PageWrapper>
+        <Navbar />
+        <FormResource />
+        <CardResource />
+      </PageWrapper>
+    </ResourceContext.Provider>
   );
 }
 
