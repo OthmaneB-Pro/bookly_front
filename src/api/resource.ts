@@ -19,13 +19,17 @@ export const findAllResource = async (
   }
 };
 
-export const createResource = async () => {
+export const createResource = async (data: ResourceType, user_id : number) => {
   try {
-    const res = await axios.post("http://localhost:8080/resource", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.post(
+      "http://localhost:8080/resource",
+      { ...data, user: { id: user_id } },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     console.log(res);
   } catch (err) {
     console.error(err);

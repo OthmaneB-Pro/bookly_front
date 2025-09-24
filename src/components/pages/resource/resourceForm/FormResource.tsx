@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import styled from "styled-components";
 import type { ResourceType } from "../../../../types/resource";
@@ -7,15 +7,24 @@ import { useForm } from "react-hook-form";
 import { zodResource } from "./zodResource";
 import FormInput from "../../../reusable-ui/FormInput";
 import Button from "../../../reusable-ui/Button";
+import { ResourceContext } from "../../../../context/ResourceContext";
+import { createResource } from "../../../../api/resource";
 
 export default function FormResource() {
+  const { setResource } = useContext(ResourceContext);
   const [isForm, setIsForm] = useState(false);
   const form = useForm<ResourceType>({
     resolver: zodResolver(zodResource),
   });
 
-  const onSubmit = (data: ResourceType) => {
-    console.log(data);
+  const onSubmit = async (data: ResourceType) => {
+    try {
+      const res = await createResource(data, 12);
+      console.log("API response:", res);
+      setResource((prev) => [data, ...prev]);
+    } catch (err) {
+      console.error("Erreur API:", err);
+    }
   };
 
   return (
@@ -24,7 +33,7 @@ export default function FormResource() {
         <button type="button" onClick={() => setIsForm(true)}>
           <IoAddCircleOutline />
         </button>
-      </div> 
+      </div>
 
       {isForm && (
         <form onSubmit={form.handleSubmit(onSubmit)}>
