@@ -19,8 +19,7 @@ export default function FormResource() {
 
   const onSubmit = async (data: ResourceType) => {
     try {
-      const res = await createResource(data, 12);
-      console.log("API response:", res);
+      await createResource(data, 12);
       setResource((prev) => [data, ...prev]);
     } catch (err) {
       console.error("Erreur API:", err);
