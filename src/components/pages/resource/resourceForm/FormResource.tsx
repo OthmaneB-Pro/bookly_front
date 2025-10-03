@@ -9,7 +9,6 @@ import FormInput from "../../../reusable-ui/FormInput";
 import Button from "../../../reusable-ui/Button";
 import { ResourceContext } from "../../../../context/ResourceContext";
 import { createResource } from "../../../../api/resource";
-import { formInputValues } from "./formInputValues";
 
 export default function FormResource() {
   const { setResource } = useContext(ResourceContext);
@@ -57,20 +56,26 @@ export default function FormResource() {
             <p>{form.formState.errors.type.message}</p>
           )}
 
-          {formInputValues.map(({ input }) => (
-            <FormInput
-              key={input.name}
-              type={input.type}
-              placeholder={input.placeholder}
-              error={
-                form.formState.errors[
-                  input.name as keyof typeof form.formState.errors
-                ]
-              }
-              registration={form.register(name as any, options)}
-            />
-          ))}
-          
+          <FormInput
+            type="text"
+            placeholder="Description"
+            error={form.formState.errors.description}
+            registration={form.register("description")}
+          />
+
+          <FormInput
+            type="date"
+            error={form.formState.errors.date}
+            registration={form.register("date")}
+          />
+
+          <FormInput
+            type="text"
+            placeholder="Capacité"
+            error={form.formState.errors.capacity}
+            registration={form.register("capacity", { valueAsNumber: true })}
+          />
+
           <label>
             Disponibilité :
             <select
