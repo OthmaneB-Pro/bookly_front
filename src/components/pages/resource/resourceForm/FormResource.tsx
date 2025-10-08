@@ -71,7 +71,6 @@ const FormResourceStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
 
   .open-button {
     border: none;
