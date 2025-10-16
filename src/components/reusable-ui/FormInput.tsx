@@ -1,14 +1,14 @@
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import styled from "styled-components";
 
-type Props = {
+export type FormInputType = {
   type?: string;
   placeholder?: string;
   registration: UseFormRegisterReturn;
   error?: FieldError;
 };
 
-export default function FormInput({ type = "text", placeholder, registration, error }: Props) {
+export default function FormInput({ type = "text", placeholder, registration, error }: FormInputType) {
   return (
     <FormInputStyled>
       <input type={type} placeholder={placeholder} {...registration} />

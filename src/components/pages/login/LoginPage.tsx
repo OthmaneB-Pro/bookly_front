@@ -3,7 +3,7 @@ import TitleLogin from "./formElement/TitleLogin";
 import { useState } from "react";
 import SwitchLogin from "./formElement/SwitchLogin";
 import LoginForm from "./loginElement/LoginForm";
-import RegisterForm from "./loginElement/registerForm";
+import RegisterForm from "./loginElement/RegisterForm";
 
 export default function LoginPage() {
   const [isRegister, setIsRegister] = useState(false);

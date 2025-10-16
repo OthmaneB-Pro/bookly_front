@@ -1,20 +1,29 @@
-import { useEffect, useState } from "react";
-import type { ResourceType } from "../../../../types/resource";
+import { useContext, useEffect, useState } from "react";
 import { findAllResource } from "../../../../api/resource";
 import styled from "styled-components";
 import Card from "../../../reusable-ui/Card";
 import EmptyResource from "./EmptyResource";
+import { ResourceContext } from "../../../../context/ResourceContext";
 
 export default function CardResource() {
-  const [resource, setResource] = useState<ResourceType[]>();
+  const { resource, setResource } = useContext(ResourceContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    findAllResource(setResource);
-  }, []);
+    try {
+      findAllResource(setResource);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [setResource]);
 
   return (
     <CardResourceStyled>
-      {resource && resource.length > 0 ? (
+      {isLoading ? (
+        "Chargement en cours..."
+      ) : resource && resource.length > 0 ? (
         resource.map((res) => (
           <Card
             key={res.id}
